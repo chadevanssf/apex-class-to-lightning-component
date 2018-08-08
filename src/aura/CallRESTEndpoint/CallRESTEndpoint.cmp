@@ -1,21 +1,28 @@
 <aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="apexMethod" type="String" />
     <aura:attribute name="sourceUrl" type="String" />
     
     <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
     
     <lightning:layout multipleRows="true" horizontalAlign="space">
         <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
-            <lightning:card >
-                <aura:set attribute="title">
-                    Enter info for REST call out
-                </aura:set>
-                <aura:set attribute="footer">
-                    <lightning:button label="Call" value="callZipInfo" onclick="{!c.makeCallOut}" />
-                </aura:set>
+            <lightning:card title="Enter info for REST call out">
                 <aura:set attribute="actions">
-                    <lightning:button label="Call" value="callZipInfo" onclick="{!c.makeCallOut}" />
+                    <lightning:button label="Call" onclick="{!c.makeCallOut}" />
                 </aura:set>
                 <p class="slds-p-horizontal_small">
+                    <div class="slds-box slds-m-bottom_small">
+                        <div class="slds-inline_icon_text slds-grid">
+                            <lightning:icon iconName="utility:info" class="slds-m-right_small" />
+                            <div class="slds-col slds-align-middle">
+                                <p>Don't forget to add the URL to the remote site settings, or this won't work!</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="slds-form slds-form_stacked">
+                        <lightning:input label="Apex Class Method" name="method" value="{!v.apexMethod}" />
+                    </div>
                     <div class="slds-form slds-form_stacked">
                         <lightning:input label="URL" name="url" value="{!v.sourceUrl}" />
                     </div>
@@ -23,31 +30,33 @@
             </lightning:card>
         </lightning:layoutItem>
         <lightning:layoutItem size="6" flexibility="auto" padding="around-small">
-            <lightning:card >
-                <aura:set attribute="title">
-                    Testing with static data
-                </aura:set>
+            <lightning:card title="Testing with static data">
                 <p class="slds-p-horizontal_small">
-                    <lightning:button label="Single Object" value="singleObject" onclick="{!c.makeCallOut}" />
-                    <lightning:button label="Single Object With Array" value="singleObjectWithArray" onclick="{!c.makeCallOut}" />
-                    <lightning:button label="Single Object With Array of Array" value="singleObjectWithArrayOfArray" onclick="{!c.makeCallOut}" />
-                    <lightning:button label="Single Object With Object" value="singleObjectWithObject" onclick="{!c.makeCallOut}" />
-                    <lightning:button label="Single Object With Array And Object" value="singleObjectWithArrayAndObject" onclick="{!c.makeCallOut}" />
+                    <lightning:card title="Single Object is Returned">
+                        <lightning:buttonGroup>
+                            <lightning:button label="Only" value="singleObject" onclick="{!c.makeCallOut}" />
+                            <lightning:button label="w/ Array" value="singleObjectWithArray" onclick="{!c.makeCallOut}" />
+                            <lightning:button label="w/ Array of Array" value="singleObjectWithArrayOfArray" onclick="{!c.makeCallOut}" />
+                            <lightning:button label="w/ Obj" value="singleObjectWithObject" onclick="{!c.makeCallOut}" />
+                            <lightning:button label="w/ Array &amp; Obj" value="singleObjectWithArrayAndObject" onclick="{!c.makeCallOut}" />
+                        </lightning:buttonGroup>
+                    </lightning:card>
                 </p>
                 <p class="slds-p-horizontal_small">
-                    <lightning:button label="Object Array" value="objectArray" onclick="{!c.makeCallOut}" />
-                    <lightning:button label="Object Array With Array" value="objectArrayWithArray" onclick="{!c.makeCallOut}" />
-                    <lightning:button label="Object Array With Array of Array" value="objectArrayWithArrayOfArray" onclick="{!c.makeCallOut}" />
-                    <lightning:button label="Object Array With Object" value="objectArrayWithObject" onclick="{!c.makeCallOut}" />
-                    <lightning:button label="Object Array With Array And Object" value="objectArrayWithArrayAndObject" onclick="{!c.makeCallOut}" />
+                    <lightning:card title="Multiple Objects are Returned">
+                        <lightning:buttonGroup>
+                            <lightning:button label="Only" value="objectArray" onclick="{!c.makeCallOut}" />
+                            <lightning:button label="w/ Array" value="objectArrayWithArray" onclick="{!c.makeCallOut}" />
+                            <lightning:button label="w/ Array of Array" value="objectArrayWithArrayOfArray" onclick="{!c.makeCallOut}" />
+                            <lightning:button label="w/ Obj" value="objectArrayWithObject" onclick="{!c.makeCallOut}" />
+                            <lightning:button label="w/ Array &amp; Obj" value="objectArrayWithArrayAndObject" onclick="{!c.makeCallOut}" />
+                        </lightning:buttonGroup>
+                    </lightning:card>
                 </p>
             </lightning:card>
         </lightning:layoutItem>
         <lightning:layoutItem size="12" flexibility="auto" padding="around-small">
-            <lightning:card >
-                <aura:set attribute="title">
-                    Resulting JSON, table formatted
-                </aura:set>
+            <lightning:card title="Resulting JSON, table formatted">
                 <p class="slds-p-horizontal_small">
                     <c:Json2Apex aura:id="json2apex" />
                 </p>

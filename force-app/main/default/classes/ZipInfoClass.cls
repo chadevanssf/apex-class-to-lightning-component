@@ -80,7 +80,7 @@ public class ZipInfoClass {
 	}
 	
 	public class ZipInfo {
-		public Results results {get;set;} 
+		@AuraEnabled public Results results {get;set;} 
 
 		public ZipInfo(JSONParser parser) {
 			while (parser.nextToken() != JSONToken.END_OBJECT) {

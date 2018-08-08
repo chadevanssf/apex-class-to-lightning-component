@@ -9,8 +9,7 @@ public with sharing class Json2ApexController
         // 
         // must have @AuraEnabled on each property that you want to expose
         
-        String jsonString = getZipJSON(Url);
-        //String jsonString = getRestJson(Url);
+        String jsonString = getRestJson(Url);
         
         ZipInfoClass.ZipInfo zi = ZipInfoClass.parse(jsonString);
         
@@ -19,23 +18,29 @@ public with sharing class Json2ApexController
         
         return results;
     }
+    @AuraEnabled
+    public static ZipInfoClass.ZipInfo callZipInfoTest(String Url)
+    {
+        String jsonString = getZipJSON(Url);
+        
+        ZipInfoClass.ZipInfo result = ZipInfoClass.parse(jsonString);
+        
+        return result;
+    }
     private static String getZipJSON(String Url)
     {
         return '{  "results": {  "zip": "00501",  "cities": [  {  "city": "Holtsville",  "preferred": "P"  },  {  "city": "Internal Revenue Service",  "preferred": "N"  }  ],  "county": "Suffolk",  "state": "NY",  "country": "U",  "area_code": "631",  "fips": "36103",  "time_zone": "EST",  "daylight_savings": "Y",  "latitude": "40.8179",  "longitude": "-73.0453",  "type": "U",  "population": "0"  } }';
     }
 
     @AuraEnabled
-    public static List<SingleObjectClass.SingleObject> singleObject(String Url)
+    public static SingleObjectClass.SingleObject singleObject(String Url)
     {
         // handles a single parent
         String jsonString = getSingleObjectJSON(Url);
         
-        SingleObjectClass.SingleObject parsed = SingleObjectClass.parse(jsonString);
+        SingleObjectClass.SingleObject result = SingleObjectClass.parse(jsonString);
         
-        List<SingleObjectClass.SingleObject> results = new List<SingleObjectClass.SingleObject>();
-        results.add(parsed);
-        
-        return results;
+        return result;
     }
     private static String getSingleObjectJSON(String Url)
     {
@@ -43,17 +48,14 @@ public with sharing class Json2ApexController
     }
     
     @AuraEnabled
-    public static List<SingleObjectWithArrayClass.SingleObjectWithArray> singleObjectWithArray(String Url)
+    public static SingleObjectWithArrayClass.SingleObjectWithArray singleObjectWithArray(String Url)
     {
         // handles a single parent
         String jsonString = getSingleObjectWithArrayJSON(Url);
         
-        SingleObjectWithArrayClass.SingleObjectWithArray parsed = SingleObjectWithArrayClass.parse(jsonString);
+        SingleObjectWithArrayClass.SingleObjectWithArray result = SingleObjectWithArrayClass.parse(jsonString);
         
-        List<SingleObjectWithArrayClass.SingleObjectWithArray> results = new List<SingleObjectWithArrayClass.SingleObjectWithArray>();
-        results.add(parsed);
-        
-        return results;
+        return result;
     }
     private static String getSingleObjectWithArrayJSON(String Url)
     {
@@ -61,17 +63,14 @@ public with sharing class Json2ApexController
     }
 
     @AuraEnabled
-    public static List<SingleObjectWithArrayOfArrayClass.SingleObjectWithArrayOfArray> singleObjectWithArrayOfArray(String Url)
+    public static SingleObjectWithArrayOfArrayClass.SingleObjectWithArrayOfArray singleObjectWithArrayOfArray(String Url)
     {
         // handles a single parent
         String jsonString = getSingleObjectWithArrayOfArrayJSON(Url);
         
-        SingleObjectWithArrayOfArrayClass.SingleObjectWithArrayOfArray parsed = SingleObjectWithArrayOfArrayClass.parse(jsonString);
+        SingleObjectWithArrayOfArrayClass.SingleObjectWithArrayOfArray result = SingleObjectWithArrayOfArrayClass.parse(jsonString);
         
-        List<SingleObjectWithArrayOfArrayClass.SingleObjectWithArrayOfArray> results = new List<SingleObjectWithArrayOfArrayClass.SingleObjectWithArrayOfArray>();
-        results.add(parsed);
-        
-        return results;
+        return result;
     }
     private static String getSingleObjectWithArrayOfArrayJSON(String Url)
     {
@@ -79,17 +78,14 @@ public with sharing class Json2ApexController
     }
     
     @AuraEnabled
-    public static List<SingleObjectWithObjectClass.SingleObjectWithObject> singleObjectWithObject(String Url)
+    public static SingleObjectWithObjectClass.SingleObjectWithObject singleObjectWithObject(String Url)
     {
         // handles a single parent
         String jsonString = getSingleObjectWithObjectJSON(Url);
         
-        SingleObjectWithObjectClass.SingleObjectWithObject parsed = SingleObjectWithObjectClass.parse(jsonString);
+        SingleObjectWithObjectClass.SingleObjectWithObject result = SingleObjectWithObjectClass.parse(jsonString);
         
-        List<SingleObjectWithObjectClass.SingleObjectWithObject> results = new List<SingleObjectWithObjectClass.SingleObjectWithObject>();
-        results.add(parsed);
-        
-        return results;
+        return result;
     }
     private static String getSingleObjectWithObjectJSON(String Url)
     {
@@ -97,17 +93,14 @@ public with sharing class Json2ApexController
     }
     
     @AuraEnabled
-    public static List<SingleObjectWithArrayAndObjectClass.SingleObjectWithArrayAndObject> singleObjectWithArrayAndObject(String Url)
+    public static SingleObjectWithArrayAndObjectClass.SingleObjectWithArrayAndObject singleObjectWithArrayAndObject(String Url)
     {
         // handles a single parent
         String jsonString = getSingleObjectWithArrayAndObjectJSON(Url);
         
-        SingleObjectWithArrayAndObjectClass.SingleObjectWithArrayAndObject parsed = SingleObjectWithArrayAndObjectClass.parse(jsonString);
+        SingleObjectWithArrayAndObjectClass.SingleObjectWithArrayAndObject result = SingleObjectWithArrayAndObjectClass.parse(jsonString);
         
-        List<SingleObjectWithArrayAndObjectClass.SingleObjectWithArrayAndObject> results = new List<SingleObjectWithArrayAndObjectClass.SingleObjectWithArrayAndObject>();
-        results.add(parsed);
-        
-        return results;
+        return result;
     }
     private static String getSingleObjectWithArrayAndObjectJSON(String Url)
     {

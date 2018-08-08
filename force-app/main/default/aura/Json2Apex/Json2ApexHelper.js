@@ -11,15 +11,18 @@
                 var records = response.getReturnValue();
                 
                 var disCols = [];
-                if (records && records.length > 0) {
-                    var record = records[0];
+                
+                if (records) {
+                    var record;
+                    if (Array.isArray(records)) {
+                        record = records[0];
+                    } else if (typeof records === 'object') {
+                        record = records;
+                        records = [record];
+                    }
                     var localDisCols = this.createConfig(record);
                     disCols = disCols.concat(localDisCols);
                 }
-                /*records.forEach(function(record) {
-                    var localDisCols = this.createConfig(record);
-                    disCols = disCols.concat(localDisCols);
-                }, this);*/
                 
                 var data = {
                     columns: disCols,
