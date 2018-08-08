@@ -29,7 +29,8 @@ Wrapper around [Json 2 Apex](https://json2apex.herokuapp.com) and [Wsdl2Apex](ht
 
 ```sh
 sfdx force:mdapi:convert -r ./src/
-sfdx force:user:permset:assign -n AlphaHealthAdmin
+sfdx force:source:convert -d ./src/
+sfdx force:user:permset:assign -n WS_Callouts
 ```
 
 ## References
